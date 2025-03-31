@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="V002" author="jwm">
+        <!--
+        Asset Status Table
+        -->
+        <createTable tableName="asset_status">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="system_status" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="status" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="active" type="bool" defaultValue="true">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="status"
+                             constraintName="asset_status"
+                             deferrable="true"
+                             disabled="false"
+                             tableName="asset_status"
+                             validate="true"/>
+        <loadData file="dbdata/V002_Asset_Status.csv" tableName="asset_status"/>
+
+        <!--
+        Asset Type Table
+        -->
+        <createTable tableName="asset_type">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="active" type="bool" defaultValue="true">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="type"
+                             constraintName="asset_type"
+                             deferrable="true"
+                             disabled="false"
+                             tableName="asset_type"
+                             validate="true"/>
+        <loadData file="dbdata/V002_Asset_Type.csv" tableName="asset_type"/>
+
+        <!--
+        Asset Table
+        -->
+        <createTable tableName="asset">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="key" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="type" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(80)"/>
+            <column name="status" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="parent_id" type="int"/>
+            <column name="location_id" type="int"/>
+        </createTable>
+        <addForeignKeyConstraint  baseColumnNames="type"
+                                  baseTableName="asset"
+                                  constraintName="fk_asset_asset_type"
+                                  referencedColumnNames="type"
+                                  referencedTableName="asset_type"
+                                  validate="true"/>
+        <addForeignKeyConstraint  baseColumnNames="status"
+                                  baseTableName="asset"
+                                  constraintName="fk_asset_asset_status"
+                                  referencedColumnNames="status"
+                                  referencedTableName="asset_status"
+                                  validate="true"/>
+        <addForeignKeyConstraint  baseColumnNames="parent_id"
+                                  baseTableName="asset"
+                                  constraintName="fk_asset_parent"
+                                  referencedColumnNames="id"
+                                  referencedTableName="asset"
+                                  validate="true"/>
+        <addForeignKeyConstraint  baseColumnNames="location_id"
+                                  baseTableName="asset"
+                                  constraintName="fk_asset_location"
+                                  referencedColumnNames="id"
+                                  referencedTableName="location"
+                                  validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

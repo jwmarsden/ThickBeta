@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="V001" author="jwm">
+        <!--
+        Location Status Table
+        -->
+        <createTable tableName="location_status">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="system_status" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="status" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="active" type="bool" defaultValue="true">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="status"
+                              constraintName="location_status"
+                              deferrable="true"
+                              disabled="false"
+                              tableName="location_status"
+                              validate="true"/>
+        <loadData file="dbdata/V001_Location_Status.csv" tableName="location_status"/>
+
+        <!--
+        Location Table
+        -->
+        <createTable tableName="location">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="key" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="status" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addForeignKeyConstraint  baseColumnNames="status"
+                                  baseTableName="location"
+                                  constraintName="fk_location_location_status"
+                                  referencedColumnNames="status"
+                                  referencedTableName="location_status"
+                                  validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

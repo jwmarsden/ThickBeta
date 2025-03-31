@@ -1,0 +1,6 @@
+id,system_status,status,description,active
+0,DRAFT,CONCEPT,Concept,true
+1,DRAFT,DRAFT,Draft Status,true
+2,ACTIVE,ACTIVE,Active,true
+3,INACTIVE,INACTIVE,Inactive,true
+4,DECOM,DECOM,Decomissioned,true
