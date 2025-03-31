@@ -2,20 +2,18 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
-        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
-    <changeSet id="V002" author="jwm">
+<changeSet id="V002" author="jwm">
         <!--
         Asset Status Table
         -->
         <createTable tableName="asset_status">
             <column name="id" type="int">
-                <constraints primaryKey="true"/>
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_asset_status"/>
             </column>
             <column name="system_status" type="varchar(8)">
                 <constraints nullable="false" />
@@ -34,14 +32,16 @@
                              disabled="false"
                              tableName="asset_status"
                              validate="true"/>
-        <loadData file="dbdata/V002_Asset_Status.csv" tableName="asset_status"/>
+        <loadData file="asset_management/data/V002_Asset_Status.csv" tableName="asset_status"/>
 
         <!--
         Asset Type Table
         -->
         <createTable tableName="asset_type">
             <column name="id" type="int">
-                <constraints primaryKey="true"/>
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_asset_type"/>
             </column>
             <column name="type" type="varchar(8)">
                 <constraints nullable="false" />
@@ -57,14 +57,16 @@
                              disabled="false"
                              tableName="asset_type"
                              validate="true"/>
-        <loadData file="dbdata/V002_Asset_Type.csv" tableName="asset_type"/>
+        <loadData file="asset_management/data/V002_Asset_Type.csv" tableName="asset_type"/>
 
         <!--
         Asset Table
         -->
         <createTable tableName="asset">
             <column name="id" type="int">
-                <constraints primaryKey="true"/>
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_asset"/>
             </column>
             <column name="key" type="varchar(10)">
                 <constraints nullable="false" />
