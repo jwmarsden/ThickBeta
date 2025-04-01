@@ -29,15 +29,15 @@ fun main() {
     c.close()
 
 
-    println(LiquibaseUtil.getBuildVersionInfo());
+    println(LiquibaseUtil.getBuildVersionInfo())
 
 
 
     val sessionFactory = Configuration()
         .addAnnotatedClass(LocationStatusEntity::class.java) // use H2 in-memory database
-        .setProperty(URL, "jdbc:hsqldb:file:target/test/db")
-        .setProperty(USER, "SA")
-        .setProperty(PASS, "") // use Agroal connection pool
+        .setProperty(JAKARTA_JDBC_URL, "jdbc:hsqldb:file:target/test/db")
+        .setProperty(JAKARTA_JDBC_USER, "SA")
+        .setProperty(JAKARTA_JDBC_PASSWORD, "") // use Agroal connection pool
         //.setProperty("hibernate.agroal.maxSize", 20) // display SQL in console
         .setProperty(SHOW_SQL, true)
         .setProperty(FORMAT_SQL, true)
@@ -47,7 +47,7 @@ fun main() {
 
     //sessionFactory.getSchemaManager().exportMappedObjects(true);
 
-    sessionFactory.schemaManager.validateMappedObjects();
+    sessionFactory.schemaManager.validateMappedObjects()
 
     sessionFactory.inTransaction { session ->
         session.persist(LocationStatusEntity(id = 0, systemStatus = "TEST", status = "TEST", description = "Test Status", active = true))

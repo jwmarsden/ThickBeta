@@ -5,7 +5,7 @@ import jakarta.persistence.*
 @Entity
 @SequenceGenerator(name = "location-id-seq", sequenceName = "LOCATION_ID_SEQ", initialValue = 100, allocationSize = 10)
 @Table(name = "LOCATION")
-data class LocationEntity(
+data class LocationEntity (
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location-id-seq")
@@ -27,7 +27,7 @@ data class LocationEntity(
     val discipline: DisciplineEntity?,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent_id")
-    val parents: Set<LocationSystemHierarchyEntity>,
+    val parentSystems: Set<LocationSystemHierarchyEntity>,
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
@@ -35,6 +35,6 @@ data class LocationEntity(
         joinColumns = [JoinColumn(name = "location_id")],
         inverseJoinColumns = [JoinColumn(name = "parent_id")]
     )
-    val children: Set<LocationSystemHierarchyEntity>,
+    val children: Set<LocationEntity>,
 
 )

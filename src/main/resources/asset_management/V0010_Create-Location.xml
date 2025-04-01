@@ -60,6 +60,50 @@
         <addForeignKeyConstraint baseColumnNames="status" baseTableName="LOCATION"
                                  constraintName="FK_LOCATION_ON_STATUS" referencedColumnNames="id"
                                  referencedTableName="LOCATION_STATUS"/>
+
+
+        <!--
+        Location System Hierarchy Table
+        -->
+        <createSequence incrementBy="10"
+                        sequenceName="LOCATION_SYSTEM_HIERARCHY_ID_SEQ"
+                        startValue="10"/>
+        <createTable tableName="LOCATION_SYSTEM_HIERARCHY">
+            <column name="id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_location_system_hierarchy"/>
+            </column>
+            <column name="system_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="child_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="child_id"
+                                 baseTableName="LOCATION_SYSTEM_HIERARCHY"
+                                 constraintName="FK_LOCATION_SYSTEM_HIERARCHY_ON_CHILD"
+                                 referencedColumnNames="id"
+                                 referencedTableName="LOCATION"/>
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="LOCATION_SYSTEM_HIERARCHY"
+                                 constraintName="FK_LOCATION_SYSTEM_HIERARCHY_ON_PARENT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="LOCATION"/>
+        <addForeignKeyConstraint baseColumnNames="system_id"
+                                 baseTableName="LOCATION_SYSTEM_HIERARCHY"
+                                 constraintName="FK_LOCATION_SYSTEM_HIERARCHY_ON_SYSTEM"
+                                 referencedColumnNames="id"
+                                 referencedTableName="SYSTEM"/>
     </changeSet>
+
 
 </databaseChangeLog>
