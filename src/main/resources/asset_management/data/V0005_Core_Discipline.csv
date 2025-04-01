@@ -1,0 +1,51 @@
+id,discipline,description,active
+10,AR,Architectural,true
+20,LA,Architectural - Landscaping,true
+30,DU,Architectural - Urban Design,true
+40,EW,Civil - Earthworks,true
+50,FN,"Civil - Fencing, Barriers and Furniture",true
+60,GD,Civil - Guidance & Delineation Systems,true
+70,PV,Civil - Pavement,true
+80,RW,Civil - Roadworks,true
+90,SD,Civil - Stormwater Drainage,true
+100,TF,Civil - TCS (Traffic Signals),true
+110,CD,Communication - Data Communications Network,true
+120,CO,Communication - General,true
+130,PA,Communication - Public Address System,true
+140,RR,Communication - Radio Systems,true
+150,EB,Electrical - Earthing and Lighting Protection,true
+160,EL,Electrical - Earthing and Lighting Protection,true
+170,LE,Electrical - Egress and Emergency Lighting,true
+180,EL,Electrical - General,true
+190,HV,Electrical - High Voltage Distribution,true
+200,LT,Electrical - Lighting Systems,true
+210,LV,Electrical - Low Voltage Distribution,true
+220,UE,Electrical - Low Voltage Distribution,true
+230,PL,Electrical - PLCs & PMCS,true
+240,FE,Fire - General,true
+250,FD,Fire Detection System,true
+260,FS,Fire Systems Suppression,true
+270,GE,Geotechnical,true
+280,HY,Hydraulic - General,true
+290,AQ,Mechanical - Air Monitoring,true
+300,ME,Mechanical - General,true
+310,CP,Mechanical - Plant Monitoring and Control System,true
+320,TV,Mechanical - Tunnel Ventilation,true
+330,VA,Mechanical - Ventilation and Air Conditioning,true
+340,BR,Structural - Bridge Structures,true
+350,BS,Structural - Building Structures,true
+360,CC,Structural - Cut and Cover,true
+370,MS,Structural - Miscellaneous Structures,true
+380,RS,Structural - Retaining Structures,true
+390,TU,Structural - Tunnel Structures,true
+400,TT,Technology - Intelligent Transport Systems,true
+410,ID,Technology - Surveillance and Detection,true
+420,TW,Temporary Works,true
+430,UC,Utilities - Communications,true
+440,UE,Utilities - Electricity,true
+450,UG,Utilities - Gas,true
+460,UT,Utilities - General,true
+470,UI,Utilities - ITS,true
+480,UP,Utilities - Petroleum products,true
+490,US,Utilities - Sewer,true
+500,UW,Utilities - Water,true

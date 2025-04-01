@@ -1,9 +1,11 @@
 package com.ventia
 
+import com.ventia.entities.LocationStatusEntity
 import liquibase.util.LiquibaseUtil
+import org.hibernate.cfg.Configuration
+import org.hibernate.cfg.JdbcSettings.*
 import java.sql.Connection
 import java.sql.DriverManager
-import java.sql.ResultSet
 import java.sql.Statement
 
 
@@ -28,4 +30,30 @@ fun main() {
 
 
     println(LiquibaseUtil.getBuildVersionInfo());
+
+
+
+    val sessionFactory = Configuration()
+        .addAnnotatedClass(LocationStatusEntity::class.java) // use H2 in-memory database
+        .setProperty(URL, "jdbc:hsqldb:file:target/test/db")
+        .setProperty(USER, "SA")
+        .setProperty(PASS, "") // use Agroal connection pool
+        //.setProperty("hibernate.agroal.maxSize", 20) // display SQL in console
+        .setProperty(SHOW_SQL, true)
+        .setProperty(FORMAT_SQL, true)
+        .setProperty(HIGHLIGHT_SQL, true)
+        .setProperty(USE_SQL_COMMENTS, true)
+        .buildSessionFactory()
+
+    //sessionFactory.getSchemaManager().exportMappedObjects(true);
+
+    sessionFactory.schemaManager.validateMappedObjects();
+
+    sessionFactory.inTransaction { session ->
+        session.persist(LocationStatusEntity(id = 0, systemStatus = "TEST", status = "TEST", description = "Test Status", active = true))
+        session.flush()
+    }
+
+    sessionFactory.close()
+
 }

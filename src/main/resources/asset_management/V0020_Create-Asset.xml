@@ -10,18 +10,18 @@
         Asset Status Table
         -->
         <createTable tableName="asset_status">
-            <column name="id" type="int">
+            <column name="id" type="bigint">
                 <constraints nullable="false"
                              primaryKey="true"
                              primaryKeyName="pk_asset_status"/>
             </column>
-            <column name="system_status" type="varchar(8)">
+            <column name="system_status" type="VARCHAR(8)">
                 <constraints nullable="false" />
             </column>
-            <column name="status" type="varchar(8)">
+            <column name="status" type="VARCHAR(8)">
                 <constraints nullable="false" />
             </column>
-            <column name="description" type="varchar(50)"/>
+            <column name="description" type="VARCHAR(50)"/>
             <column name="active" type="bool" defaultValue="true">
                 <constraints nullable="false" />
             </column>
@@ -32,21 +32,21 @@
                              disabled="false"
                              tableName="asset_status"
                              validate="true"/>
-        <loadData file="asset_management/data/V002_Asset_Status.csv" tableName="asset_status"/>
+        <loadData file="asset_management/data/V0020_Asset_Status.csv" tableName="asset_status"/>
 
         <!--
         Asset Type Table
         -->
         <createTable tableName="asset_type">
-            <column name="id" type="int">
+            <column name="id" type="bigint">
                 <constraints nullable="false"
                              primaryKey="true"
                              primaryKeyName="pk_asset_type"/>
             </column>
-            <column name="type" type="varchar(8)">
+            <column name="type" type="VARCHAR(8)">
                 <constraints nullable="false" />
             </column>
-            <column name="description" type="varchar(50)"/>
+            <column name="description" type="VARCHAR(50)"/>
             <column name="active" type="bool" defaultValue="true">
                 <constraints nullable="false" />
             </column>
@@ -57,25 +57,25 @@
                              disabled="false"
                              tableName="asset_type"
                              validate="true"/>
-        <loadData file="asset_management/data/V002_Asset_Type.csv" tableName="asset_type"/>
+        <loadData file="asset_management/data/V0020_Asset_Type.csv" tableName="asset_type"/>
 
         <!--
         Asset Table
         -->
         <createTable tableName="asset">
-            <column name="id" type="int">
+            <column name="id" type="bigint">
                 <constraints nullable="false"
                              primaryKey="true"
                              primaryKeyName="pk_asset"/>
             </column>
-            <column name="key" type="varchar(10)">
+            <column name="key" type="VARCHAR(10)">
                 <constraints nullable="false" />
             </column>
-            <column name="type" type="varchar(8)">
+            <column name="type" type="VARCHAR(8)">
                 <constraints nullable="false" />
             </column>
-            <column name="description" type="varchar(80)"/>
-            <column name="status" type="varchar(8)">
+            <column name="description" type="VARCHAR(80)"/>
+            <column name="status" type="VARCHAR(8)">
                 <constraints nullable="false" />
             </column>
             <column name="parent_id" type="int"/>

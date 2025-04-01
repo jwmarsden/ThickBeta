@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DiffGenerationConfig">
+    <option name="snapshotDb" value="false" />
+    <option name="snapshotModelValue" value="ThickBeta:ThickBeta" />
     <option name="sourceModelValue" value="ThickBeta:ThickBeta" />
     <option name="targetDbValue" value="51e35d91-67ef-4f73-acd2-891fdd75fd2b" />
+    <option name="updateChangeLogPath" value="src/main/resources/dbchangelog.xml" />
+    <option name="updateDbConnectionName" value="51e35d91-67ef-4f73-acd2-891fdd75fd2b" />
   </component>
 </project>
