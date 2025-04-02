@@ -10,17 +10,17 @@ data class SystemEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "system-id-seq")
     @Column(nullable = false)
-    val id: Long?,
+    val id: Long? = -1,
 
     @Column(nullable = false)
-    val system: String,
+    val system: String? = null,
 
-    val description: String,
-
-    @Column(nullable = false)
-    val graph: Boolean,
+    val description: String? = null,
 
     @Column(nullable = false)
-    val active: Boolean,
+    val graph: Boolean = false,
+
+    @Column(nullable = false)
+    val active: Boolean = false,
 
 )

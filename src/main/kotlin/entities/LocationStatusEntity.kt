@@ -10,17 +10,17 @@ data class LocationStatusEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_status-id-seq")
     @Column(nullable = false)
-    val id: Long?,
+    val id: Long? = -1,
 
     @Column(nullable = false, name = "SYSTEM_STATUS")
-    var systemStatus: String,
+    var systemStatus: String? = null,
 
     @Column(nullable = false)
-    var status: String,
+    var status: String? = null,
 
-    val description: String,
+    val description: String? = null,
 
     @Column(nullable = false)
-    val active: Boolean,
+    val active: Boolean = false,
 
 )

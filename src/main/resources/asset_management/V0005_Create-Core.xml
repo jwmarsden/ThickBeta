@@ -5,7 +5,7 @@
                                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
-    <changeSet id="V005"
+    <changeSet id="V0005"
                author="JWM">
         <createSequence incrementBy="10"
                         sequenceName="DISCIPLINE_ID_SEQ"/>
@@ -17,7 +17,9 @@
                              primaryKeyName="pk_discipline"/>
             </column>
             <column name="discipline"
-                    type="VARCHAR(3)"/>
+                    type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
             <column name="description"
                     type="VARCHAR(50)"/>
             <column name="active"
@@ -25,6 +27,9 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addUniqueConstraint columnNames="discipline"
+                             constraintName="uc_discipline_discipline"
+                             tableName="DISCIPLINE"/>
         <loadData file="asset_management/data/V0005_Core_Discipline.csv" tableName="DISCIPLINE"/>
 
         <createSequence incrementBy="10"
